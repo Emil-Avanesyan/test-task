@@ -345,7 +345,7 @@ section, footer {
 .apply-button {
     display: none;
     position: fixed;
-    top: 90vh;
+    bottom: 20px;
     width: 44.5%;
 }
 .apply-button>button {
