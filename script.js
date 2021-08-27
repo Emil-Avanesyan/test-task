@@ -1,7 +1,73 @@
+function filtersSlice() {
+    const filterButton = document.querySelector('.filter-button')
+    const letfSection = document.querySelector('.left-section')
+    const backgroundField = document.querySelector('.background-field')
+    const body = document.querySelector('body')
+    const xButton = document.querySelector('.x-button-2')
+    const applyButton = document.querySelector('.apply-button')
 
+    function openFiltersField () {
+        letfSection.classList.toggle("visible")
+        letfSection.classList.toggle('filters-field-style')
+        backgroundField.classList.toggle('background-field-style')
+        body.classList.toggle("hidden")
+        xButton.classList.toggle("visible")
+        applyButton.classList.toggle("visible")
+    }
+    
+    window.addEventListener("resize", (e)=> {
+        if(window.screen.width>1200){
+            letfSection.classList.remove("visible")
+            letfSection.classList.remove('filters-field-style')
+            backgroundField.classList.remove('background-field-style')
+            body.classList.remove("hidden")
+            xButton.classList.remove("visible")
+            applyButton.classList.remove("visible")
+        }
+    })
+    
+    document.addEventListener("click", (e)=> {
+        if(e.target === backgroundField) {
+            letfSection.style.animationName = "to-left"
+            setTimeout(()=> {
+                openFiltersField();
+                letfSection.style.animationName = "to-right"  
+            },700)
+            
+            
+        }
+    })
+    xButton.addEventListener("click", (e) => {
+        letfSection.style.animationName = "to-left"
+        setTimeout(()=>{
+            openFiltersField();
+           letfSection.style.animationName = "to-right" 
+          },700)
+        
+        
+    
+        
+    })
+    
+    
+    filterButton.addEventListener("click",openFiltersField)
+    applyButton.addEventListener("click",(e) => {
+        letfSection.style.animationName = "to-left-apply"
+        setTimeout(()=> {
+            openFiltersField()
+            letfSection.style.animationName = "to-right"
+        },700)
 
+    })
+}
+function rangePrice() {
+    const pricesRange = document.querySelector(".prices-range")
+    const price = document.querySelector(".price")
 
-
+    pricesRange.addEventListener("mousemove", (e)=> {
+        price.innerHTML =`${pricesRange.value * 500} ֏` 
+    })
+}
 function favouriteList() {
     const likedButton = document.querySelectorAll('.liked-button')
     const dataImg = {}
@@ -54,8 +120,6 @@ function favouriteList() {
     changeImg()
 
 }
-favouriteList()
-
 function basketList() {
     const basketButton = document.querySelectorAll(".basket-button")
     let dataBaskets = {}
@@ -124,47 +188,10 @@ function basketList() {
     }
     drawCount()
 }
-basketList()
-
-function filtersSlice() {
-    const filterButton = document.querySelector('.filter-button')
-    const letfSection = document.querySelector('.left-section')
-    const backgroundField = document.querySelector('.background-field')
-    const body = document.querySelector('body')
-    const xButton = document.querySelector('.x-button-2')
-    const applyButton = document.querySelector('.apply-button')
-
-    function openFiltersField () {
-        letfSection.classList.toggle("visible")
-        letfSection.classList.toggle('filters-field-style')
-        backgroundField.classList.toggle('background-field-style')
-        body.classList.toggle("hidden")
-        xButton.classList.toggle("visible")
-        applyButton.classList.toggle("visible")
-    }
-    
-    window.addEventListener("resize", (e)=> {
-        if(window.screen.width>1200){
-            letfSection.classList.remove("visible")
-            letfSection.classList.remove('filters-field-style')
-            backgroundField.classList.remove('background-field-style')
-            body.classList.remove("hidden")
-            xButton.classList.remove("visible")
-            applyButton.classList.remove("visible")
-        }
-    })
-    
-    document.addEventListener("click", (e)=> {
-        if(e.target === backgroundField) {
-            openFiltersField()
-        }
-    })
-    xButton.addEventListener("click", openFiltersField)
-    
-    
-    filterButton.addEventListener("click", openFiltersField)
-}
 
 filtersSlice()
+basketList()
+favouriteList()
+rangePrice()
 
 
